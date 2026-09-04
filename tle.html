@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terminale — anonymous</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        if (localStorage.getItem('promo') !== 'tle') {
+            window.location.href = 'index.html';
+        }
+    </script>
 </head>
 <body>
 
@@ -19,22 +24,13 @@
     <main>
         <article>
             <h2>Secrets de la Terminale</h2>
-            <p class="date">Promo Terminale</p>
-        </article>
-
-        <article>
-            <h2>Secret 1</h2>
-            <p>Écris ici le premier secret...</p>
-        </article>
-
-        <article>
-            <h2>Secret 2</h2>
-            <p>Écris ici le deuxième secret...</p>
-        </article>
-
-        <article>
-            <h2>Secret 3</h2>
-            <p>Écris ici le troisième secret...</p>
+            <p class="date">Tous les secrets de la promo</p>
+            
+            <p>Ici tu pourras écrire tous les secrets de la Terminale, les uns à la suite des autres.</p>
+            
+            <p>• Exemple de secret...</p>
+            <p>• Un autre secret...</p>
+            <p>• Encore un secret...</p>
         </article>
     </main>
 
