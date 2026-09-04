@@ -5,46 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>anonymous</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .choix-promo {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .choix-promo h2 {
+            color: #c9a0a0;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+        .boutons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .boutons button {
+            background: #1a0505;
+            color: #c9a0a0;
+            border: 1px solid #5a1010;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .boutons button:hover {
+            background: #3a0a0a;
+            color: #ff6b6b;
+            box-shadow: 0 0 15px rgba(140, 0, 0, 0.4);
+        }
+
+        /* Fenêtre de rappel */
+        #rappel {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #rappel .contenu {
+            background: #111;
+            border: 1px solid #5a1010;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(120, 0, 0, 0.4);
+        }
+        #rappel h3 {
+            color: #c9a0a0;
+            margin-bottom: 15px;
+        }
+        #rappel p {
+            color: #bbb;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        #rappel button {
+            background: #5a1010;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #rappel button:hover {
+            background: #8b0000;
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <img src="education.jpg" alt="Logo Collège Catholique Roger Duquesne">
+        <img src="education.jpg" alt="Logo">
         <h1 class="sang">
             <span>a</span><span>n</span><span>o</span><span>n</span><span>y</span><span>m</span><span>o</span><span>u</span><span>s</span>
         </h1>
         <p>Dans l'ombre des pensées...</p>
     </header>
 
-    <main>
-        <article>
-            <h2><a href="3eme.html">3ème</a></h2>
-            <p class="date">Secrets de la promo 3ème</p>
-            <p>Clique pour découvrir les secrets de la 3ème.</p>
-        </article>
+    <div class="choix-promo">
+        <h2>Choisis ta promotion</h2>
+        <div class="boutons">
+            <button onclick="choisirPromo('3eme')">3ème</button>
+            <button onclick="choisirPromo('2nde')">2nde</button>
+            <button onclick="choisirPromo('1ere')">1ère</button>
+            <button onclick="choisirPromo('tle')">Terminale</button>
+        </div>
+    </div>
 
-        <article>
-            <h2><a href="2nde.html">2nde</a></h2>
-            <p class="date">Secrets de la promo 2nde</p>
-            <p>Clique pour découvrir les secrets de la 2nde.</p>
-        </article>
-
-        <article>
-            <h2><a href="1ere.html">1ère</a></h2>
-            <p class="date">Secrets de la promo 1ère</p>
-            <p>Clique pour découvrir les secrets de la 1ère.</p>
-        </article>
-
-        <article>
-            <h2><a href="tle.html">Terminale</a></h2>
-            <p class="date">Secrets de la promo Terminale</p>
-            <p>Clique pour découvrir les secrets de la Terminale.</p>
-        </article>
-    </main>
+    <!-- Fenêtre de rappel -->
+    <div id="rappel">
+        <div class="contenu">
+            <h3>Rappel important</h3>
+            <p>
+                Les informations diffusées sur ce site ont été vérifiées dans la mesure du possible.<br><br>
+                Elles sont partagées de manière anonyme.<br><br>
+                En continuant, tu acceptes de lire ces contenus avec responsabilité et de ne pas les utiliser pour nuire à autrui.
+            </p>
+            <button onclick="accepterRappel()">J'ai compris</button>
+        </div>
+    </div>
 
     <footer>
         <p>© 2026 — anonymous</p>
     </footer>
+
+    <script>
+        let promoChoisie = "";
+
+        function choisirPromo(promo) {
+            promoChoisie = promo;
+            document.getElementById('rappel').style.display = 'flex';
+        }
+
+        function accepterRappel() {
+            // On enregistre la promotion choisie
+            localStorage.setItem('promo', promoChoisie);
+            // On redirige vers la page de la promo
+            window.location.href = promoChoisie + '.html';
+        }
+    </script>
 
 </body>
 </html>
