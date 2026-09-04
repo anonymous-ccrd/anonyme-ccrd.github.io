@@ -37,25 +37,51 @@ header img {
     animation: clignote 1.8s infinite;
 }
 
-/* Titre anonymous avec effet sang + clignotement */
-header h1 {
+/* Titre anonymous */
+header h1.sang {
     font-size: 2.6rem;
-    letter-spacing: 8px;
-    color: #8b0000;
+    letter-spacing: 6px;
     text-transform: uppercase;
     margin-bottom: 8px;
     font-weight: bold;
-    animation: clignote 2.2s infinite;
+    display: inline-block;
+}
 
-    /* Effet taches de sang */
+header h1.sang span {
+    display: inline-block;
+    color: #8b0000;
+    position: relative;
+    animation: clignote 2.2s infinite;
     text-shadow: 
         0 0 5px #8b0000,
         0 0 10px #5a0000,
         2px 3px 0 #4a0000,
-        -1px 4px 0 #3a0000,
-        3px 6px 2px rgba(80, 0, 0, 0.7),
-        -2px 8px 3px rgba(60, 0, 0, 0.5),
-        1px 12px 4px rgba(40, 0, 0, 0.4);
+        -1px 4px 0 #3a0000;
+}
+
+/* Gouttes de sang qui coulent sous chaque lettre */
+header h1.sang span::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(to bottom, #8b0000, #4a0000, transparent);
+    border-radius: 0 0 50% 50%;
+    animation: coule 2.5s infinite;
+    opacity: 0.85;
+}
+
+header h1.sang span:nth-child(odd)::after {
+    animation-delay: 0.3s;
+    height: 14px;
+}
+
+header h1.sang span:nth-child(even)::after {
+    animation-delay: 0.7s;
+    height: 22px;
 }
 
 header p {
@@ -116,8 +142,22 @@ a {
     color: #a07070;
 }
 
-/* Animation de clignotement */
+/* Animations */
 @keyframes clignote {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.35; }
+}
+
+@keyframes coule {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+    30% {
+        opacity: 0.9;
+    }
+    100% {
+        height: 22px;
+        opacity: 0;
+    }
 }
